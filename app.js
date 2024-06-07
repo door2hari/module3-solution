@@ -75,7 +75,7 @@ function MenuItemsService($http, ApiBasePath) {
          .then(function(response) {
 
            // process all results
-           var items = response.data.menu_items;
+           var items = response.data['menu_items'];
            var foundItems = [];
 
            for (var i = 0; i < items.length; i++) {
