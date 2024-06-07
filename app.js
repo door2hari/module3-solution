@@ -51,8 +51,10 @@
                     for (var category in items) {
                         if (items[category].menu_items && Array.isArray(items[category].menu_items)) {
                             var menuItems = items[category].menu_items;
+                            console.log("Inside Loop of Category : ", menuItems);
                             for (var i = 0; i < menuItems.length; i++) {
                                 var description = menuItems[i].description;
+                                console.log("Inside Loop of menuItems : ", description);
                                 if (description && description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
                                     foundItems.push(menuItems[i]);
                                 }
