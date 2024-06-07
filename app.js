@@ -46,13 +46,20 @@
 
                 console.log("Response data:", items);
 
-                // Check if items.menu_items exists and is an array
-                if (items && Array.isArray(items)) {
-                    for (var i = 0; i < items.length; i++) {
-                        var description = items[i].description;
-                        if (description && description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
-                            foundItems.push(items[i]);
-                        }
+                // Handle different response structures
+                if (items && items.menu_items && Array.isArray(items.menu_items)) {
+                    items = items.menu_items;
+                } else if (items && Array.isArray(items)) {
+                    // items is already the array
+                } else {
+                    console.error('Unexpected response structure:', items);
+                    return [];
+                }
+
+                for (var i = 0; i < items.length; i++) {
+                    var description = items[i].description;
+                    if (description && description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+                        foundItems.push(items[i]);
                     }
                 }
 
