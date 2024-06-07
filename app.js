@@ -44,17 +44,22 @@
                 var foundItems = [];
                 var items = response.data;
 
+                console.log("Response data:", items);
+
                 // Check if items.menu_items exists and is an array
-                if (items && items.menu_items && Array.isArray(items.menu_items)) {
-                    for (var i = 0; i < items.menu_items.length; i++) {
-                        var description = items.menu_items[i].description;
-                        if (description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
-                            foundItems.push(items.menu_items[i]);
+                if (items && Array.isArray(items)) {
+                    for (var i = 0; i < items.length; i++) {
+                        var description = items[i].description;
+                        if (description && description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+                            foundItems.push(items[i]);
                         }
                     }
                 }
-                
+
                 return foundItems;
+            }).catch(function (error) {
+                console.error('Error in fetching menu items:', error);
+                return [];
             });
         };
     }
