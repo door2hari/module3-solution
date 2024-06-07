@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container" ng-controller="NarrowItDownController as narrowCtrl">
-        <h1>Narrow It Down For Me!</h1>
+        <h1>Module 3 - Narrow It Down! (Uses REST API)</h1>
         <input type="text" ng-model="narrowCtrl.searchTerm" placeholder="Search term">
         <button ng-click="narrowCtrl.narrowItDown()">Narrow It Down For Me!</button>
         <found-items items="narrowCtrl.found" on-remove="narrowCtrl.removeItem(index)"></found-items>
