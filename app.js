@@ -4,7 +4,7 @@
 angular.module('MenuItemsApp', [])
 .controller('MenuItemsController', MenuItemsController)
 .service('MenuItemsService', MenuItemsService)
-.constant('ApiBasePath', "http://davids-restaurant.herokuapp.com")
+.constant('ApiBasePath', "https://coursera-jhu-default-rtdb.firebaseio.com")
 .directive('foundItems', ItemsListDirective);
 
 
@@ -70,7 +70,7 @@ function MenuItemsService($http, ApiBasePath) {
        service.getMatchedMenuItems = function(searchTerm) {
          return $http({
            method: "GET",
-           url: ("https://davids-restaurant.herokuapp.com/menu_items.json")
+           url: ("https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json")
          })
          .then(function(response) {
 
