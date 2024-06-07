@@ -11,7 +11,7 @@
         var narrowCtrl = this;
         narrowCtrl.searchTerm = '';
         narrowCtrl.found = [];
-        
+
         narrowCtrl.narrowItDown = function () {
             if (narrowCtrl.searchTerm.trim() === '') {
                 narrowCtrl.found = [];
@@ -42,15 +42,18 @@
                 url: 'https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json'
             }).then(function (response) {
                 var foundItems = [];
-                var items = response.data.menu_items;
+                var items = response.data;
 
-                for (var i = 0; i < items.length; i++) {
-                    var description = items[i].description;
-                    if (description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
-                        foundItems.push(items[i]);
+                // Check if items.menu_items exists and is an array
+                if (items && items.menu_items && Array.isArray(items.menu_items)) {
+                    for (var i = 0; i < items.menu_items.length; i++) {
+                        var description = items.menu_items[i].description;
+                        if (description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+                            foundItems.push(items.menu_items[i]);
+                        }
                     }
                 }
-
+                
                 return foundItems;
             });
         };
