@@ -1,6 +1,7 @@
 <ul>
     <li ng-repeat="item in ctrl.items">
-        {{ item.name }}, {{ item.short_name }}, {{ item.description }}
-        <button ng-click="ctrl.onRemove({index: $index})">Don't want this one!</button>
+        <span>{{ item.name }} ({{ item.short_name }}): {{ item.description }}</span>
+        <button ng-click="ctrl.onRemove({ index: $index });">Don't want this one!</button>
     </li>
+    <li ng-if="!ctrl.items.length">Nothing found</li>
 </ul>
